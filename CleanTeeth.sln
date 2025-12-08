@@ -13,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastru
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanTeeth.Domain", "CleanTeeth.Domain\CleanTeeth.Domain.csproj", "{7ABFF3F5-AC36-4FE5-BFF3-FB4687CD4FBF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanTeeth.Tests", "CleanTeeth.Tests\CleanTeeth.Tests.csproj", "{D9B88980-1F81-4528-9693-CAD79196BB16}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,12 +25,17 @@ Global
 		{7ABFF3F5-AC36-4FE5-BFF3-FB4687CD4FBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7ABFF3F5-AC36-4FE5-BFF3-FB4687CD4FBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7ABFF3F5-AC36-4FE5-BFF3-FB4687CD4FBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9B88980-1F81-4528-9693-CAD79196BB16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9B88980-1F81-4528-9693-CAD79196BB16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9B88980-1F81-4528-9693-CAD79196BB16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9B88980-1F81-4528-9693-CAD79196BB16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{7ABFF3F5-AC36-4FE5-BFF3-FB4687CD4FBF} = {75893511-31BF-4FDD-8F07-CE67B505E327}
+		{D9B88980-1F81-4528-9693-CAD79196BB16} = {4B74E309-AD12-41F6-9E8E-1D0C77BCBC27}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0ED3825F-8D4C-4B1A-8696-87BED92F651F}
