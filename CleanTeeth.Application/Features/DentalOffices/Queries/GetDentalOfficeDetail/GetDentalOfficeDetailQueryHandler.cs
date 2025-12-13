@@ -1,6 +1,7 @@
 ﻿using CleanTeeth.Application.Contracts.Repositories;
 using CleanTeeth.Application.Exceptions;
 using CleanTeeth.Application.Utilities;
+using CleanTeeth.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,18 +20,14 @@ public class GetDentalOfficeDetailQueryHandler : IRequestHandler<GetDentalOffice
     }
     public async Task<DentalOfficeDetailDto> Handle(GetDentalOfficeDetailQuery request)
     {
-        var dentailOffice = await repository.GetById(request.Id);
+        DentalOffice? dentailOffice = await repository.GetById(request.Id);
 
         if (dentailOffice is null)
         {
             throw new NotFoundException();
         }
 
-        var dto = new DentalOfficeDetailDto()
-        {
-            Id = dentailOffice.Id,
-            Name = dentailOffice.Name
-        };
+        var dto = dentailOffice.ToDto();
 
         return dto;
     }
