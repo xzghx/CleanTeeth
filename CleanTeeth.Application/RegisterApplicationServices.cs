@@ -20,8 +20,8 @@ public static class RegisterApplicationServices
         services.AddScoped<IRequestHandler<CreateDentalOfficeCommand, Guid>,
                             CreateDentalOfficeCommandHandler>();
 
-        services.AddScoped<IRequestHandler<IRequestHandler<GetDentalOfficeDetailQuery, DentalOfficeDetailDto>,
-                            GetDentalOfficeDetailQueryHandler>>();
+        services.AddScoped<IRequestHandler<GetDentalOfficeDetailQuery, DentalOfficeDetailDto>,
+                            GetDentalOfficeDetailQueryHandler>();
 
 
         return services;
