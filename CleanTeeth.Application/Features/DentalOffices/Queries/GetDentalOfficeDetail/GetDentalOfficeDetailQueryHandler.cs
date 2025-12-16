@@ -2,11 +2,6 @@
 using CleanTeeth.Application.Exceptions;
 using CleanTeeth.Application.Utilities;
 using CleanTeeth.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CleanTeeth.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 

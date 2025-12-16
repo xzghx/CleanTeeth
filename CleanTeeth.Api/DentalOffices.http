@@ -1,14 +1,22 @@
 @CleanTeeth.Api_HostAddress = http://localhost:5201/DentalOffices
 
+//Get dentalOffice by id
 Get {{CleanTeeth.Api_HostAddress}}/019B2222-BE59-7834-AA95-2ED175CD4217
 Accept: application/json
 
-##
+###
 
+//Get all dentalOffices
+Get {{CleanTeeth.Api_HostAddress}}
+Accept: application/json
+
+###
+
+//Create new dentalOffice
 Post {{CleanTeeth.Api_HostAddress}}
 Content-Type: application/json
 
 {
-  "name": "Dental Office A"
+  "name": "Dental Office c"
 }
 ###
