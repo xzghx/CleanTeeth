@@ -17,7 +17,57 @@ public class SimpleMediator : IMediator
     {
         this.serviceProvider = serviceProvider;
     }
+
+    /// <summary>
+    /// </summary>
+    /// <typeparam name="TResponse"></typeparam>
+    /// <param name="request"></param>
+    /// <returns>TResponse</returns>
+    /// <exception cref="MediatorException"></exception>
     public async Task<TResponse> Send<TResponse>(IRequest<TResponse> request)
+    {
+        await ApplyValidations(request);
+
+        var handlerType = typeof(IRequestHandler<,>)
+                 .MakeGenericType(request.GetType(), typeof(TResponse));
+
+        var handler = serviceProvider.GetService(handlerType);
+
+        if (handler is null)
+        {
+            throw new MediatorException($"Handler was not found for {request.GetType().Name}");
+        }
+
+
+        var method = handlerType.GetMethod("Handle")!;
+        return await (Task<TResponse>)method.Invoke(handler, new object[] { request })!;
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="request"></param>
+    /// <returns>Nothing</returns>
+    /// <exception cref="MediatorException"></exception>
+    public async Task Send(IRequest request)
+    {
+        await ApplyValidations(request);
+
+        var handlerType = typeof(IRequestHandler<>)
+                 .MakeGenericType(request.GetType());
+
+        var handler = serviceProvider.GetService(handlerType);
+
+        if (handler is null)
+        {
+            throw new MediatorException($"Handler was not found for {request.GetType().Name}");
+        }
+
+
+        var method = handlerType.GetMethod("Handle")!;
+        await (Task)method.Invoke(handler, new object[] { request })!;
+    }
+
+    public async Task ApplyValidations(object request)
     {
         var validatorType = typeof(IValidator<>).MakeGenericType(request.GetType());
 
@@ -40,21 +90,5 @@ public class SimpleMediator : IMediator
             }
         }
 
-
-
-
-        var handlerType = typeof(IRequestHandler<,>)
-             .MakeGenericType(request.GetType(), typeof(TResponse));
-
-        var handler = serviceProvider.GetService(handlerType);
-
-        if (handler is null)
-        {
-            throw new MediatorException($"Handler was not found for {request.GetType().Name}");
-        }
-
-
-        var method = handlerType.GetMethod("Handle")!;
-        return await (Task<TResponse>)method.Invoke(handler, new object[] { request })!;
     }
 }

@@ -9,3 +9,10 @@ namespace CleanTeeth.Application.Utilities;
 public interface IRequest<TResponse>
 {
 }
+
+/// <summary>
+/// Usefull when no reponse is expected
+/// </summary>
+public interface IRequest
+{
+}
