@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CleanTeeth.Domain.Entities;
 
@@ -17,12 +18,24 @@ public class DentalOffice
 
     public DentalOffice(string name)
     {
+        CheckValidationRules(name);
+
+        Name = name;
+        Id = Guid.CreateVersion7();
+    }
+
+    public void UpdateName(string name)
+    {
+        CheckValidationRules(name);
+
+        Name = name;
+
+    }
+    void CheckValidationRules(string name)
+    {
         if (string.IsNullOrEmpty(name))
         {
             throw new BusinessRuleException($"The {nameof(name)} isRequired.");
         }
-
-        Name = name;
-        Id = Guid.CreateVersion7();
     }
 }
