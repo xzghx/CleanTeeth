@@ -20,9 +20,11 @@ public static class RegisterPersistenceServices
                 options.UseSqlServer("name=CleanTeethConnectionString")
         );
 
+        services.AddScoped<IUnitOfWork, UnitOfWorkEfCore>();
+
         services.AddScoped<IDentalOfficeRepository, DentalOfficeRepository>();
 
-        services.AddScoped<IUnitOfWork, UnitOfWorkEfCore>();
+        services.AddScoped<IPatientRepository, PatientRepository>();
 
         return services;
     }
