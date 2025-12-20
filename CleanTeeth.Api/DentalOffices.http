@@ -17,7 +17,7 @@ Post {{CleanTeeth.Api_HostAddress}}
 Content-Type: application/json
 
 {
-  "name": "Dental Office c"
+  "name": "Dental Office delete me"
 }
 ###
 
@@ -27,4 +27,13 @@ Content-Type: application/json
 
 {
   "name": "Dental Office c updated☺"
+}
+
+###
+
+//Delete a dentalOffice by id
+Delete {{CleanTeeth.Api_HostAddress}}/019b3a4b-24cd-7f4f-9c7d-ab8201172a89
+Content-Type: application/json
+
+{
 }
