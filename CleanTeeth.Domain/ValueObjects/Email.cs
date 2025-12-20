@@ -10,6 +10,8 @@ namespace CleanTeeth.Domain.ValueObjects;
 public class Email
 {
     public string Value { get; } = null!;
+    private Email() { }
+
     public Email(string email)
     {
         if (string.IsNullOrEmpty(email))
