@@ -3,6 +3,8 @@ using CleanTeeth.Application.Features.DentalOffices.Commands.DeleteDentalOffice;
 using CleanTeeth.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using CleanTeeth.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using CleanTeeth.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
+using CleanTeeth.Application.Features.Patients.Commands.CreatePatient;
+using CleanTeeth.Application.Features.Patients.Queries.GetPatientsList;
 using CleanTeeth.Application.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -20,6 +22,7 @@ public static class RegisterApplicationServices
     {
         services.AddTransient<IMediator, SimpleMediator>();
 
+        //--------------//DentalOffices//--------------//
         services.AddScoped<IRequestHandler<CreateDentalOfficeCommand, Guid>
             , CreateDentalOfficeCommandHandler>();
 
@@ -35,6 +38,12 @@ public static class RegisterApplicationServices
         services.AddScoped<IRequestHandler<DeleteDentalOfficeCommand>
             , DeleteDentalOfficeCommandHandler>();
 
+        //--------------// Patients //--------------//
+        services.AddScoped<IRequestHandler<CreatePatientCommand, Guid>
+            , CreatePatientCommandHandler>();
+
+        services.AddScoped<IRequestHandler<GetPatientsListQuery, List<GetPatientsListDto>>
+            , GetPatientsListQueryHandler>();
 
         return services;
     }

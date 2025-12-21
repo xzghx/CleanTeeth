@@ -1,0 +1,39 @@
+﻿@CleanTeeth.Api_HostAddress = http://localhost:5201/Patients
+
+//Get dentalOffice by id
+Get {{CleanTeeth.Api_HostAddress}}/019B2222-BE59-7834-AA95-2ED175CD4217
+Accept: application/json
+
+###
+
+//Get all patients
+Get {{CleanTeeth.Api_HostAddress}}
+Accept: application/json
+
+###
+
+//Create new patient
+Post {{CleanTeeth.Api_HostAddress}}
+Content-Type: application/json
+
+{
+  "name": "Sara",
+  "email": "sara@gmail.com"
+}
+###
+
+//Update a dentalOffice
+Put {{CleanTeeth.Api_HostAddress}}/019b2677-f205-7709-aeb4-c660694512f9
+Content-Type: application/json
+
+{
+  "name": "Dental Office c updated☺"
+}
+
+###
+
+//Delete a dentalOffice by id
+Delete {{CleanTeeth.Api_HostAddress}}/019b3a4b-24cd-7f4f-9c7d-ab8201172a89
+Content-Type: application/json
+{
+}
