@@ -2,10 +2,12 @@
 using CleanTeeth.Api.Utilities;
 using CleanTeeth.Application.Exceptions;
 using CleanTeeth.Application.Features.Patients.Commands.CreatePatient;
+using CleanTeeth.Application.Features.Patients.Queries.GetPatientById;
 using CleanTeeth.Application.Features.Patients.Queries.GetPatientsList;
 using CleanTeeth.Application.Utilities;
 using CleanTeeth.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Threading.Tasks;
 
 namespace CleanTeeth.Api.Controllers;
@@ -24,6 +26,15 @@ public class PatientsController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] GetPatientsListQuery query)
     {
+        var result = await mediator.Send(query);
+        return Ok(result);
+
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var query = new GetPatientByIdQuery() { Id = id };
         var result = await mediator.Send(query);
         return Ok(result);
 

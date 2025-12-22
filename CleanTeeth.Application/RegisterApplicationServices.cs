@@ -4,6 +4,7 @@ using CleanTeeth.Application.Features.DentalOffices.Commands.UpdateDentalOffice;
 using CleanTeeth.Application.Features.DentalOffices.Queries.GetDentalOfficeDetail;
 using CleanTeeth.Application.Features.DentalOffices.Queries.GetDentalOfficesList;
 using CleanTeeth.Application.Features.Patients.Commands.CreatePatient;
+using CleanTeeth.Application.Features.Patients.Queries.GetPatientById;
 using CleanTeeth.Application.Features.Patients.Queries.GetPatientsList;
 using CleanTeeth.Application.Utilities;
 using CleanTeeth.Application.Utilities.Common;
@@ -45,6 +46,9 @@ public static class RegisterApplicationServices
 
         services.AddScoped<IRequestHandler<GetPatientsListQuery, PaginatedDto<GetPatientsListDto>>
             , GetPatientsListQueryHandler>();
+
+        services.AddScoped<IRequestHandler<GetPatientByIdQuery, GetPatientByIdDto>
+            , GetPatientByIdQueryHandler>();
 
         return services;
     }
