@@ -1,4 +1,5 @@
 ﻿using CleanTeeth.Api.DTOs.Patients;
+using CleanTeeth.Api.Utilities;
 using CleanTeeth.Application.Exceptions;
 using CleanTeeth.Application.Features.Patients.Commands.CreatePatient;
 using CleanTeeth.Application.Features.Patients.Queries.GetPatientsList;
@@ -21,10 +22,8 @@ public class PatientsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<IActionResult> GetAll()
+    public async Task<IActionResult> GetAll([FromQuery] GetPatientsListQuery query)
     {
-        var query = new GetPatientsListQuery();
-
         var result = await mediator.Send(query);
         return Ok(result);
 

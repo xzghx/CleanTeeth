@@ -41,6 +41,12 @@ public class Repository<T> : IRepository<T> where T : class
         return item;
     }
 
+    public async Task<int> GetTotalAmountOfRecords()
+    {
+        int count = await dbContext.Set<T>().CountAsync();
+        return count;
+    }
+
     public Task Update(T entity)
     {
         dbContext.Update(entity);

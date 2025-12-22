@@ -6,6 +6,7 @@ using CleanTeeth.Application.Features.DentalOffices.Queries.GetDentalOfficesList
 using CleanTeeth.Application.Features.Patients.Commands.CreatePatient;
 using CleanTeeth.Application.Features.Patients.Queries.GetPatientsList;
 using CleanTeeth.Application.Utilities;
+using CleanTeeth.Application.Utilities.Common;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -42,7 +43,7 @@ public static class RegisterApplicationServices
         services.AddScoped<IRequestHandler<CreatePatientCommand, Guid>
             , CreatePatientCommandHandler>();
 
-        services.AddScoped<IRequestHandler<GetPatientsListQuery, List<GetPatientsListDto>>
+        services.AddScoped<IRequestHandler<GetPatientsListQuery, PaginatedDto<GetPatientsListDto>>
             , GetPatientsListQueryHandler>();
 
         return services;

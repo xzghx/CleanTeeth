@@ -7,7 +7,7 @@ Accept: application/json
 ###
 
 //Get all patients
-Get {{CleanTeeth.Api_HostAddress}}
+Get {{CleanTeeth.Api_HostAddress}}?Page=1&PageSize=50
 Accept: application/json
 
 ###
@@ -17,8 +17,8 @@ Post {{CleanTeeth.Api_HostAddress}}
 Content-Type: application/json
 
 {
-  "name": "Sara",
-  "email": "sara@gmail.com"
+  "name": "David",
+  "email": "David@example.com"
 }
 ###
 

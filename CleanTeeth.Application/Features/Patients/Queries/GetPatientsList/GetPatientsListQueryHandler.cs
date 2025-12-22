@@ -2,6 +2,8 @@
 using CleanTeeth.Application.Contracts.Repositories;
 using CleanTeeth.Application.Features.Patients.Queries.GetPatientsListl;
 using CleanTeeth.Application.Utilities;
+using CleanTeeth.Application.Utilities.Common;
+using CleanTeeth.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,31 +12,37 @@ using System.Threading.Tasks;
 
 namespace CleanTeeth.Application.Features.Patients.Queries.GetPatientsList;
 
-public class GetPatientsListQueryHandler : IRequestHandler<GetPatientsListQuery, List<GetPatientsListDto>>
+public class GetPatientsListQueryHandler : IRequestHandler<GetPatientsListQuery, PaginatedDto<GetPatientsListDto>>
 {
     private readonly IPatientRepository repository;
-    private readonly IUnitOfWork unitOfWork;
 
-    public GetPatientsListQueryHandler(
-        IPatientRepository repository,
-        IUnitOfWork unitOfWork
-        )
+    public GetPatientsListQueryHandler(IPatientRepository repository)
     {
         this.repository = repository;
-        this.unitOfWork = unitOfWork;
     }
-    public async Task<List<GetPatientsListDto>> Handle(GetPatientsListQuery request)
+    public async Task<PaginatedDto<GetPatientsListDto>> Handle(GetPatientsListQuery request)
     {
 
         try
         {
-            var result = await repository.GetAll();
-            return result.Select(e => e.toDto()).ToList();
+            IEnumerable<Patient> result = await repository.GetPatientsPaginated(request);
+            int totalCount = await repository.GetTotalAmountOfRecords();
 
+            List<GetPatientsListDto> dtos = result
+                                                .Select(e => e.toDto())
+                                                .ToList();
+            var paginatedDto = new PaginatedDto<GetPatientsListDto>()
+            {
+                Enitites = dtos,
+                TotalCount = totalCount,
+                Page = request.Page,
+                PageSize = request.PageSize
+            };
+
+            return paginatedDto;
         }
         catch (Exception)
         {
-            await unitOfWork.RollBack();
             throw;
         }
 
